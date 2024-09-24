@@ -2,14 +2,21 @@
 
 import { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import Card from "./card";
+import { NumberedCard } from "./numbered-card";
+import { assemblyProps, containerProps } from "@/lib/mockData";
+import { Marmelad } from "next/font/google";
+
+const marmelad = Marmelad({
+  weight: ["400"],
+  subsets: ["latin", "cyrillic"],
+});
 
 interface CardWrapperProps {
   title: string;
-  cards: Array<{ id: number; title: string; image: string }>;
+  data: assemblyProps[] | containerProps[];
 }
 
-function CardWrapperComponent({ title, cards }: CardWrapperProps) {
+const CardWrapper: React.FC<CardWrapperProps> = ({ title, data }) => {
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -47,14 +54,21 @@ function CardWrapperComponent({ title, cards }: CardWrapperProps) {
 
   return (
     <div className="relative">
-      <h2 className="text-2xl font-bold mb-4">{title}</h2>
+      <h2 className={`text-3xl font-extrabold mb-4 ${marmelad.className}`}>
+        {title}
+      </h2>
+      <hr className="p-3" />
       <div className="relative">
         <div
           ref={containerRef}
           className="flex space-x-4 overflow-x-auto scrollbar-hide"
         >
-          {cards.map((card) => (
-            <Card key={card.id} title={card.title} image={card.image} />
+          {data.map((card) => (
+            <NumberedCard
+              key={card.id}
+              number={card.number}
+              title={card.title}
+            />
           ))}
         </div>
         {showLeftArrow && (
@@ -76,6 +90,6 @@ function CardWrapperComponent({ title, cards }: CardWrapperProps) {
       </div>
     </div>
   );
-}
+};
 
-export default CardWrapperComponent;
+export default CardWrapper;

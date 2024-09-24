@@ -16,7 +16,7 @@ export function Page() {
       {/* Main Content */}
       <div className="flex-1 p-6 space-y-6 overflow-y-auto">
         <CardWrapper
-          title="Popular Destinations"
+          title="Сборки"
           cards={[
             {
               id: 1,
@@ -46,7 +46,7 @@ export function Page() {
           ]}
         />
         <CardWrapper
-          title="Trending Experiences"
+          title="Контейнеры"
           cards={[
             {
               id: 1,
