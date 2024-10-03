@@ -11,7 +11,7 @@ const Page = () => {
       <ActivitySection />
 
       {/* Main Content */}
-      <div className="flex-1 p-6 space-y-6 overflow-y-auto">
+      <div className="flex-1 p-6 space-y-6 overflow-y-auto mt-12">
         <CardWrapper data={assembliesList} title="Сборки" />
         <CardWrapper data={containersList} title="Контейнеры" />
       </div>

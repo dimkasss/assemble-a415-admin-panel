@@ -1,29 +1,39 @@
-'use client'
+"use client";
 
-import { LucideIcon, Home, Search, Settings } from 'lucide-react'
+import { Marmelad } from "next/font/google";
+import Image, { StaticImageData } from "next/image";
 
-interface ActivityButtonProps {
-  icon: 'home' | 'search' | 'settings'
-  active?: boolean
+const marmelad = Marmelad({ weight: "400", subsets: ["latin", "cyrillic"] });
+
+interface ActivityButtonComponentProps {
+  text: string;
+  image?: StaticImageData;
+  imageData?: {
+    image: StaticImageData;
+    imageAlt: string;
+  };
+  active?: boolean;
 }
 
-const iconMap: Record<ActivityButtonProps['icon'], LucideIcon> = {
-  home: Home,
-  search: Search,
-  settings: Settings,
-}
-
-function ActivityButtonComponent({ icon, active = false }: ActivityButtonProps) {
-  const Icon = iconMap[icon]
+const ActivityButtonComponent: React.FC<ActivityButtonComponentProps> = ({
+  text,
+  imageData,
+  active = false,
+}) => {
   return (
     <button
-      className={`w-full p-4 transition-colors duration-200 ${
-        active ? 'bg-blue-100 text-blue-600' : 'text-gray-500 hover:bg-gray-100'
+      className={`flex flex-col items-center gap-5 w-full p-4 transition-colors duration-200 bg-[--active-button-bg] my-6 rounded-3xl hover:bg-[--active-button-bg-hover] ${
+        active ? "" : ""
       }`}
     >
-      <Icon className="w-6 h-6 mx-auto" />
+      <h2 className={`text-2xl text-[--secondary] ${marmelad.className}`}>
+        {text}
+      </h2>
+      {imageData != undefined && (
+        <Image src={imageData.image} alt={imageData.imageAlt} width={150} />
+      )}
     </button>
-  )
-}
+  );
+};
 
 export default ActivityButtonComponent;

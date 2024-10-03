@@ -5,12 +5,6 @@ export interface assemblyProps {
   hasSound: boolean;
 }
 
-export interface containerProps {
-  id: number;
-  number: number;
-  title: string;
-}
-
 export const assembliesList: assemblyProps[] = [
   {
     id: 1,
@@ -68,40 +62,47 @@ export const assembliesList: assemblyProps[] = [
   },
 ];
 
-export const containersList: containerProps[] = [
+export const containersList: assemblyProps[] = [
   {
     id: 1,
     number: 1,
     title: "Контейнер 1",
+    hasSound: false,
   },
   {
     id: 2,
     number: 2,
     title: "Контейнер 1",
+    hasSound: false,
   },
   {
     id: 3,
     number: 3,
     title: "Контейнер 1",
+    hasSound: false,
   },
   {
     id: 4,
     number: 4,
     title: "Контейнер 1",
+    hasSound: false,
   },
   {
     id: 5,
     number: 5,
     title: "Контейнер 1",
+    hasSound: false,
   },
   {
     id: 6,
     number: 6,
     title: "Контейнер 1",
+    hasSound: false,
   },
   {
     id: 7,
     number: 7,
     title: "Контейнер 1",
+    hasSound: false,
   },
 ];

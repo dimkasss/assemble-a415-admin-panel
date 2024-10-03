@@ -50,6 +50,9 @@ body {
 
     --bg: #fbf8ff;
     --bg-secondary: #e9e7ef;
+    --secondary: #5a5d72;
+    --active-button-bg: #e3e1e9;
+    --active-button-bg-hover: #cfcdd6;
   }
   .dark {
     --background: 0 0% 3.9%;

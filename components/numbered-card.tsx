@@ -1,15 +1,35 @@
 "use client";
 
+import { getRandomTailwindColor } from "@/lib/utils";
+import Image from "next/image";
+
+import SpeakerIcon from "@/public/speaker-icon.svg";
+import { useMemo } from "react";
+import Link from "next/link";
+
 interface NumberedCardProps {
   number: number;
   title: string;
+  hasSound?: boolean;
+  id: number;
 }
 
-export function NumberedCard({ number, title }: NumberedCardProps) {
+const NumberedCard = ({ number, title, hasSound, id }: NumberedCardProps) => {
+  const color = useMemo(getRandomTailwindColor, []);
+  console.log("@color", color);
+
   return (
-    <div className="bg-purple-100 rounded-3xl p-4 w-48 h-24 flex flex-col justify-between">
-      <div className="text-gray-600 text-sm">№{number}</div>
-      <div className="text-gray-800 text-2xl font-semibold">{title}</div>
-    </div>
+    <Link
+      href={"/assemblies/" + id}
+      className={`bg-${color} rounded-3xl p-4 min-w-48 flex flex-col justify-between gap-5 cursor-pointer`}
+    >
+      <div className="flex justify-between items-center">
+        <p className="text-gray-600 text-lg">№{number}</p>
+        <p>{hasSound && <Image src={SpeakerIcon} alt="Аудио" />}</p>
+      </div>
+      <div className="text-gray-800 text-2xl font-medium">{title}</div>
+    </Link>
   );
-}
+};
+
+export default NumberedCard;

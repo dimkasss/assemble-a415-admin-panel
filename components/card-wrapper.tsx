@@ -2,8 +2,8 @@
 
 import { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { NumberedCard } from "./numbered-card";
-import { assemblyProps, containerProps } from "@/lib/mockData";
+import NumberedCard from "./numbered-card";
+import { assemblyProps } from "@/lib/mockData";
 import { Marmelad } from "next/font/google";
 
 const marmelad = Marmelad({
@@ -13,10 +13,12 @@ const marmelad = Marmelad({
 
 interface CardWrapperProps {
   title: string;
-  data: assemblyProps[] | containerProps[];
+  data: assemblyProps[];
 }
 
 const CardWrapper: React.FC<CardWrapperProps> = ({ title, data }) => {
+  console.log("@cardWrapper render");
+
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -24,7 +26,7 @@ const CardWrapper: React.FC<CardWrapperProps> = ({ title, data }) => {
   const handleScroll = (direction: "left" | "right") => {
     const container = containerRef.current;
     if (container) {
-      const scrollAmount = direction === "left" ? -300 : 300;
+      const scrollAmount = direction === "left" ? -192 : 192;
       container.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
@@ -68,25 +70,33 @@ const CardWrapper: React.FC<CardWrapperProps> = ({ title, data }) => {
               key={card.id}
               number={card.number}
               title={card.title}
+              hasSound={card.hasSound}
+              id={card.id}
             />
           ))}
         </div>
-        {showLeftArrow && (
+        {
           <button
             onClick={() => handleScroll("left")}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full shadow-md"
+            className={`absolute right-0 top-[30%] transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full shadow-md ${
+              showLeftArrow ? "" : "cursor-not-allowed"
+            }`}
+            disabled={!showLeftArrow}
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
-        )}
-        {showRightArrow && (
+        }
+        {
           <button
             onClick={() => handleScroll("right")}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full shadow-md"
+            className={`absolute right-0 top-[70%] transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full shadow-md ${
+              showRightArrow ? "" : "cursor-not-allowed"
+            }`}
+            disabled={!showRightArrow}
           >
             <ChevronRight className="w-6 h-6" />
           </button>
-        )}
+        }
       </div>
     </div>
   );
