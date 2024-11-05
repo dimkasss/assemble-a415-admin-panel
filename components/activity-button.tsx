@@ -22,7 +22,7 @@ const ActivityButtonComponent: React.FC<ActivityButtonComponentProps> = ({
 }) => {
   return (
     <button
-      className={`flex flex-col items-center gap-5 w-full p-4 transition-colors duration-200 bg-[--active-button-bg] my-6 rounded-3xl hover:bg-[--active-button-bg-hover] ${
+      className={`flex flex-col items-center gap-5 w-full p-6 transition-colors duration-200 bg-[--active-button-bg] my-6 rounded-3xl hover:bg-[--active-button-bg-hover] ${
         active ? "" : ""
       }`}
     >

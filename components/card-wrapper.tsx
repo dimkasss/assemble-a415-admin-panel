@@ -4,12 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import NumberedCard from "./numbered-card";
 import { assemblyProps } from "@/lib/mockData";
-import { Marmelad } from "next/font/google";
-
-const marmelad = Marmelad({
-  weight: ["400"],
-  subsets: ["latin", "cyrillic"],
-});
+import ContentHeading from "./ContentHeading";
 
 interface CardWrapperProps {
   title: string;
@@ -17,8 +12,6 @@ interface CardWrapperProps {
 }
 
 const CardWrapper: React.FC<CardWrapperProps> = ({ title, data }) => {
-  console.log("@cardWrapper render");
-
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -56,10 +49,7 @@ const CardWrapper: React.FC<CardWrapperProps> = ({ title, data }) => {
 
   return (
     <div className="relative">
-      <h2 className={`text-3xl font-extrabold mb-4 ${marmelad.className}`}>
-        {title}
-      </h2>
-      <hr className="p-3" />
+      <ContentHeading title={title} />
       <div className="relative">
         <div
           ref={containerRef}
@@ -78,7 +68,7 @@ const CardWrapper: React.FC<CardWrapperProps> = ({ title, data }) => {
         {
           <button
             onClick={() => handleScroll("left")}
-            className={`absolute right-0 top-[30%] transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full shadow-md ${
+            className={`absolute z-10 right-0 top-[30%] transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full shadow-md ${
               showLeftArrow ? "" : "cursor-not-allowed"
             }`}
             disabled={!showLeftArrow}
@@ -89,7 +79,7 @@ const CardWrapper: React.FC<CardWrapperProps> = ({ title, data }) => {
         {
           <button
             onClick={() => handleScroll("right")}
-            className={`absolute right-0 top-[70%] transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full shadow-md ${
+            className={`absolute z-10 right-0 top-[70%] transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full shadow-md ${
               showRightArrow ? "" : "cursor-not-allowed"
             }`}
             disabled={!showRightArrow}

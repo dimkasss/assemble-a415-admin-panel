@@ -16,7 +16,6 @@ interface NumberedCardProps {
 
 const NumberedCard = ({ number, title, hasSound, id }: NumberedCardProps) => {
   const color = useMemo(getRandomTailwindColor, []);
-  console.log("@color", color);
 
   return (
     <Link

@@ -1,3 +1,4 @@
+import ActivitySection from "@/components/ActivitySection";
 import UserInfoButton from "@/components/UserInfoButton";
 
 interface MainContentLayoutProps {
@@ -6,12 +7,16 @@ interface MainContentLayoutProps {
 
 const MainContentLayout: React.FC<MainContentLayoutProps> = ({ children }) => {
   return (
-    <>
-      {children}
-      <div className="absolute right-0 top-0 h-full">
-        <UserInfoButton />
+    <div className="flex min-h-screen">
+      {/* Left Control Panel */}
+      <ActivitySection />
+
+      {/* Main Content */}
+      <div className="flex-1 p-6 space-y-6 overflow-y-auto mt-12 md:max-w-[70vw]">
+        {children}
       </div>
-    </>
+      <UserInfoButton />
+    </div>
   );
 };
 

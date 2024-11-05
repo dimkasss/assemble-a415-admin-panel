@@ -1,11 +1,6 @@
-export interface assemblyProps {
-  id: number;
-  number: number;
-  title: string;
-  hasSound: boolean;
-}
+import { IAssemblies } from "@/components/dataHandler/dataTypes";
 
-export const assembliesList: assemblyProps[] = [
+export const assembliesList: IAssemblies = [
   {
     id: 1,
     number: 10,
